@@ -211,6 +211,11 @@
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="170" height="179"/>
+                                <connections>
+                                    <outlet property="detailLabel" destination="RD6-dw-Neg" id="mst-pG-LGM"/>
+                                    <outlet property="itemImageView" destination="wbX-E4-C1A" id="co3-Yr-utu"/>
+                                    <outlet property="titleLabel" destination="mjZ-UK-GbB" id="sFa-sP-ZIP"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -218,11 +223,6 @@
                             <outlet property="delegate" destination="T5c-mz-q36" id="KHK-Fa-StW"/>
                         </connections>
                     </collectionView>
-                    <connections>
-                        <outlet property="detailLabel" destination="RD6-dw-Neg" id="snu-CS-dTN"/>
-                        <outlet property="itemImageView" destination="wbX-E4-C1A" id="5vP-0G-Eod"/>
-                        <outlet property="titleLabel" destination="mjZ-UK-GbB" id="VpT-mA-ZYx"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fnW-Ow-3lL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

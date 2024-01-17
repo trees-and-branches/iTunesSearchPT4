@@ -18,7 +18,8 @@
 		18A6053323CF9ADA002037CA /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6053223CF9ADA002037CA /* ItemTableViewCell.swift */; };
 		18A6053523CFABBB002037CA /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6053423CFABBB002037CA /* StoreItem.swift */; };
 		18A6053723CFABDC002037CA /* StoreItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6053623CFABDC002037CA /* StoreItemController.swift */; };
-		EA5DB5362B5629100043AB79 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5DB5352B5629100043AB79 /* ItemCollectionViewCell.swift */; };
+		EA5DB55B2B5776DC0043AB79 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5DB55A2B5776DC0043AB79 /* ItemCollectionViewCell.swift */; };
+		EA5DB55D2B577DEE0043AB79 /* ItemDisplaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5DB55C2B577DEE0043AB79 /* ItemDisplaying.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +36,8 @@
 		18A6053223CF9ADA002037CA /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		18A6053423CFABBB002037CA /* StoreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItem.swift; sourceTree = "<group>"; };
 		18A6053623CFABDC002037CA /* StoreItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemController.swift; sourceTree = "<group>"; };
-		EA5DB5352B5629100043AB79 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		EA5DB55A2B5776DC0043AB79 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		EA5DB55C2B577DEE0043AB79 /* ItemDisplaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDisplaying.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +54,8 @@
 		18A6051023CF9802002037CA = {
 			isa = PBXGroup;
 			children = (
-				EA5DB5352B5629100043AB79 /* ItemCollectionViewCell.swift */,
+				EA5DB55C2B577DEE0043AB79 /* ItemDisplaying.swift */,
+				EA5DB55A2B5776DC0043AB79 /* ItemCollectionViewCell.swift */,
 				18A6051B23CF9802002037CA /* iTunesSearch */,
 				18A6051A23CF9802002037CA /* Products */,
 			);
@@ -158,7 +161,8 @@
 				18A6053323CF9ADA002037CA /* ItemTableViewCell.swift in Sources */,
 				1812E9A323F36978009BBFA7 /* StoreItemCollectionViewController.swift in Sources */,
 				18A6053523CFABBB002037CA /* StoreItem.swift in Sources */,
-				EA5DB5362B5629100043AB79 /* ItemCollectionViewCell.swift in Sources */,
+				EA5DB55B2B5776DC0043AB79 /* ItemCollectionViewCell.swift in Sources */,
+				EA5DB55D2B577DEE0043AB79 /* ItemDisplaying.swift in Sources */,
 				18A6053723CFABDC002037CA /* StoreItemController.swift in Sources */,
 				18A6053123CF9829002037CA /* StoreItemListTableViewController.swift in Sources */,
 				18A6051D23CF9802002037CA /* AppDelegate.swift in Sources */,

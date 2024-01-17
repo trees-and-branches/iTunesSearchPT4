@@ -28,6 +28,7 @@ class StoreItemContainerViewController: UIViewController, UISearchResultsUpdatin
     var collectionViewImageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
     
     var tableViewDataSource: UITableViewDiffableDataSource<String, StoreItem>!
+    var collectionViewDataSource: UICollectionViewDiffableDataSource<String, StoreItem>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +76,34 @@ class StoreItemContainerViewController: UIViewController, UISearchResultsUpdatin
         })
     }
     
+    func configureCollectionViewDataSource(_ collectionView:
+                                           UICollectionView) {
+        collectionViewDataSource =
+        UICollectionViewDiffableDataSource<String, StoreItem>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Item", for: indexPath) as! ItemCollectionViewCell
+            
+            self.collectionViewImageLoadTasks[indexPath]?.cancel()
+            self.collectionViewImageLoadTasks[indexPath] = Task {
+                cell.titleLabel.text = item.name
+                cell.detailLabel.text = item.artist
+                cell.itemImageView.image = UIImage(systemName: "photo")
+                do {
+                    let image = try await self.storeItemController.fetchImage(from: item.artworkURL)
+                    
+                    cell.itemImageView.image = image
+                } catch let error as NSError where error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
+                    // Ignore cancellation errors
+                } catch {
+                    cell.itemImageView.image = UIImage(systemName: "photo")
+                    print("Error fetching image: \(error)")
+                }
+                self.collectionViewImageLoadTasks[indexPath] = nil
+            }
+            
+            return cell
+        })
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(fetchMatchingItems), object: nil)
         perform(#selector(fetchMatchingItems), with: nil, afterDelay: 0.3)
@@ -99,6 +128,13 @@ class StoreItemContainerViewController: UIViewController, UISearchResultsUpdatin
         let mediaType = queryOptions[searchController.searchBar.selectedScopeButtonIndex]
         
         // cancel existing task since we will not use the result
+        // Cancel any images that are still being fetched and reset the imageTask dictionaries​ 
+        collectionViewImageLoadTasks.values.forEach { task in task.cancel() }
+        collectionViewImageLoadTasks = [:]
+        tableViewImageLoadTasks.values.forEach { task in task.cancel() }
+        tableViewImageLoadTasks = [:]
+        
+        
         searchTask?.cancel()
         searchTask = Task {
             if !searchTerm.isEmpty {
@@ -126,9 +162,11 @@ class StoreItemContainerViewController: UIViewController, UISearchResultsUpdatin
                     print(error)
                 }
                 await tableViewDataSource.apply(itemsSnapshot)
+                await collectionViewDataSource.apply(itemsSnapshot)
             } else {
                 
                 await tableViewDataSource.apply(itemsSnapshot)
+//                await collectionViewDataSource.apply(itemsSnapshot)
                 
             }
             searchTask = nil

@@ -1,12 +1,6 @@
 
 import UIKit
 
-protocol ItemDisplaying {
-    var itemImageView: UIImageView! { get set }
-    var titleLabel: UILabel! { get set }
-    var detailLabel: UILabel! { get set }
-}
-
 
 class StoreItemCollectionViewController: UICollectionViewController {
     
@@ -35,34 +29,6 @@ class StoreItemCollectionViewController: UICollectionViewController {
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: section)
     }
     
-    func configureCollectionViewDataSource(_ collectionView:
-       UICollectionView) {
-        collectionViewDataSource =
-           UICollectionViewDiffableDataSource<String, StoreItem>(collectionView: collectionView, cellProvider:
-       { (collectionView, indexPath, item) -> UICollectionViewCell? in
-            let cell =
-               collectionView.dequeueReusableCell(withReuseIdentifier:
-               "Item", for: indexPath) as! ItemCollectionViewCell
 
-            self.collectionViewImageLoadTasks[indexPath]?.cancel()
-            self.collectionViewImageLoadTasks[indexPath] = Task {
-                cell.titleLabel.text = item.name
-                cell.detailLabel.text = item.artist
-                cell.itemImageView.image = UIImage(systemName: "photo")
-                do {
-                    let image = try await self.storeItemController.fetchImage(from: item.artworkURL)
-
-                    cell.itemImageView.image = image
-                } catch let error as NSError where error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
-                    // Ignore cancellation errors
-                } catch {
-                    cell.itemImageView.image = UIImage(systemName: "photo")
-                    print("Error fetching image: \(error)")
-                }
-                self.collectionViewImageLoadTasks[indexPath] = nil
-            }
-
-            return cell
-        })
-    }
 }
+
