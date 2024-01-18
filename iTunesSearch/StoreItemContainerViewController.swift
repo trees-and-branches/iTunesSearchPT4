@@ -118,6 +118,9 @@ class StoreItemContainerViewController: UIViewController, UISearchResultsUpdatin
         if let tableViewController = segue.destination as? StoreItemListTableViewController {
             configureTableViewDataSource(tableViewController.tableView)
         }
+        if let collectionViewController = segue.destination as? StoreItemCollectionViewController {
+            configureCollectionViewDataSource(collectionViewController.collectionView)
+        }
     }
     
     @objc func fetchMatchingItems() {
@@ -162,11 +165,11 @@ class StoreItemContainerViewController: UIViewController, UISearchResultsUpdatin
                     print(error)
                 }
                 await tableViewDataSource.apply(itemsSnapshot)
-                await collectionViewDataSource.apply(itemsSnapshot)
+                await collectionViewDataSource.apply(itemsSnapshot, animatingDifferences: true)
             } else {
                 
                 await tableViewDataSource.apply(itemsSnapshot)
-//                await collectionViewDataSource.apply(itemsSnapshot)
+                await collectionViewDataSource.apply(itemsSnapshot, animatingDifferences: true)
                 
             }
             searchTask = nil

@@ -4,12 +4,8 @@ import UIKit
 
 class StoreItemCollectionViewController: UICollectionViewController {
     
-    var collectionViewDataSource: UICollectionViewDiffableDataSource<String, StoreItem>!
-    
-    
-    @IBOutlet weak var itemImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var detailLabel: UILabel!
+//    var collectionViewDataSource: UICollectionViewDiffableDataSource<String, StoreItem>!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
